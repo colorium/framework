@@ -1,0 +1,26 @@
+{
+  "name": "colorium/framework",
+  "type": "library",
+  "description": "Non-frustrating Web Framework",
+  "homepage": "https://github.com/colorium/framework",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aymeric Assier",
+      "email": "aymeric.assier@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "psr/log": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Colorium\\Event": "/src/Colorium/Event/",
+      "Colorium\\Kernel": "/src/Colorium/Kernel/",
+      "Colorium\\Routing": "/src/Colorium/Routing/",
+      "Colorium\\Templating": "/src/Colorium/Templating/"
+    }
+  }
+}
