@@ -19,10 +19,10 @@
   },
   "autoload": {
     "psr-4": {
-      "Colorium\\Event": "/src/Colorium/Event/",
-      "Colorium\\Kernel": "/src/Colorium/Kernel/",
-      "Colorium\\Routing": "/src/Colorium/Routing/",
-      "Colorium\\Templating": "/src/Colorium/Templating/"
+      "Colorium\\Event\\": "/src/Colorium/Event/",
+      "Colorium\\Kernel\\": "/src/Colorium/Kernel/",
+      "Colorium\\Routing\\": "/src/Colorium/Routing/",
+      "Colorium\\Templating\\": "/src/Colorium/Templating/"
     }
   }
 }
