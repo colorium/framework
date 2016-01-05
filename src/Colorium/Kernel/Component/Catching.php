@@ -9,6 +9,8 @@ use Colorium\Http\Error;
 use Colorium\Event;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Whoops\Run as WhoopsRun;
+use Whoops\Handler\PrettyPageHandler;
 
 class Catching extends Component
 {
@@ -18,6 +20,9 @@ class Catching extends Component
 
     /** @var LoggerInterface */
     protected $logger;
+
+    /** @var bool */
+    protected $debug = false;
 
 
     /**
@@ -29,6 +34,10 @@ class Catching extends Component
     {
         $this->logger = $logger ?: new NullLogger;
         $this->events = new Event\Store;
+
+        set_error_handler(function($message, $severity, $file, $line) {
+            throw new \ErrorException($message, 0, $severity, $file, $line);
+        });
     }
 
 
@@ -39,6 +48,7 @@ class Catching extends Component
     {
         $this->app->logger = &$this->logger;
         $this->app->events = &$this->events;
+        $this->app->debug = &$this->debug;
     }
 
 
@@ -55,6 +65,20 @@ class Catching extends Component
      */
     public function handle(Request $request, Response $response, callable $process = null)
     {
+        // define whoops handler
+        if($this->debug) {
+            $whoops = new WhoopsRun;
+            $handler = new PrettyPageHandler;
+            $handler->addDataTableCallback('App route', function () use ($request) {
+                return (array)$request->context->route;
+            });
+            $handler->addDataTableCallback('App resource', function () use ($request) {
+                return (array)$request->context->resource;
+            });
+            $whoops->push($handler);
+            $whoops->register();
+        }
+
         // event listener wrapper
         $forward = function($resource) use($request) {
             return $this->app->forward($resource, $request);
