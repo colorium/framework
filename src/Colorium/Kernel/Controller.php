@@ -3,7 +3,8 @@
 namespace Colorium\Kernel;
 
 use Colorium\Http\Response;
-use Colorium\Http\Session;
+use Colorium\Persistence\Session;
+use Colorium\Persistence\Flash;
 
 trait Controller
 {
@@ -30,7 +31,7 @@ trait Controller
      * @param array $headers
      * @return Response\Redirect
      */
-    protected static function http_redirect($url, $code = 302, array $headers = [])
+    protected static function redirect($url, $code = 302, array $headers = [])
     {
         return new Response\Redirect($url, $code, $headers);
     }
@@ -45,7 +46,7 @@ trait Controller
      * @param array $headers
      * @return Response\Template
      */
-    protected static function http_template($template, array $vars = [], $code = 200, array $headers = [])
+    protected static function template($template, array $vars = [], $code = 200, array $headers = [])
     {
         return new Response\Template($template, $vars, $code, $headers);
     }
@@ -72,7 +73,7 @@ trait Controller
      */
     protected static function flash($key)
     {
-        return Session::flash($key);
+        return Flash::get($key);
     }
 
 

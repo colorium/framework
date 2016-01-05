@@ -5,6 +5,7 @@ namespace Colorium\Kernel\Component;
 use Colorium\Http;
 use Colorium\Runtime\Resource;
 use Colorium\Kernel\Component;
+use Colorium\Persistence\Auth;
 
 class Authenticating extends Component
 {
@@ -24,13 +25,13 @@ class Authenticating extends Component
         // need resource resolving
         if($request->context->resource instanceof Resource) {
             $rank = $request->context->resource->annotation('access') ?: 0;
-            if($rank and Http\Session::rank() < $rank) {
+            if($rank and Auth::rank() < $rank) {
                 throw new Http\Error\Unauthorized;
             }
         }
 
         // update context
-        $request->context->user = Http\Session::user();
+        $request->context->user = Auth::user();
 
         return $process($request, $response);
     }
