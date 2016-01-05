@@ -14,9 +14,9 @@
   "require": {
     "php": ">=5.6",
     "psr/log": ">=1.0",
-    "colorium/http": ">=0.1",
-    "colorium/runtime": ">=0.1",
-    "colorium/persistence": ">=0.1"
+    "colorium/http": "dev-master",
+    "colorium/runtime": "dev-master",
+    "colorium/persistence": "dev-master"
   },
   "autoload": {
     "psr-4": {
