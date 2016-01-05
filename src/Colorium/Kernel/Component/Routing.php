@@ -52,7 +52,7 @@ class Routing extends Component
      *
      * @throws Error\NotFound
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         // skip routing if the resource is already specified
         if(!$request->context->resource) {

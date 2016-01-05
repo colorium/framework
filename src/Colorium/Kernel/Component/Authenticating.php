@@ -3,7 +3,7 @@
 namespace Colorium\Kernel\Component;
 
 use Colorium\Http;
-use Colorium\Runtime\Resource;
+use Colorium\Runtime\Resolver\Resource;
 use Colorium\Kernel\Component;
 use Colorium\Persistence\Auth;
 
@@ -20,7 +20,7 @@ class Authenticating extends Component
      *
      * @throws Http\Error\Unauthorized
      */
-    public function handle(Http\Request $request, Http\Response $response, callable $process)
+    public function handle(Http\Request $request, Http\Response $response, callable $process = null)
     {
         // need resource resolving
         if($request->context->resource instanceof Resource) {

@@ -12,7 +12,7 @@ interface Subject
      * @param callable $listener
      * @return $this
      */
-    public function on($event, callable $listener);
+    public function on($event, $listener);
 
     /**
      * Trigger event

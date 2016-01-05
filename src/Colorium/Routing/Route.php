@@ -35,7 +35,7 @@ class Route
 	public function __construct($method, $uri, $resource, array $meta = [])
 	{
 		$this->method = strtoupper($method);
-		$this->query = $uri;
+		$this->uri = $uri;
 		$this->resource = $resource;
 		$this->meta = $meta;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Colorium\View;
+namespace Colorium\Templating;
 
 class Html implements Engine
 {

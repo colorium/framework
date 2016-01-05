@@ -6,7 +6,7 @@ use Colorium\Kernel\Component;
 use Colorium\Http\Request;
 use Colorium\Http\Response;
 use Colorium\Http\Error;
-use Colorium\Runtime;
+use Colorium\Runtime\Resolver;
 
 class Executing extends Component
 {
@@ -22,7 +22,7 @@ class Executing extends Component
      *
      * @throws Error\NotImplemented
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         // expect valid resource
         if(!is_callable($request->context->resource)) {
@@ -30,7 +30,7 @@ class Executing extends Component
         }
 
         // instanciate resource callable
-        if($request->context->resource instanceof Runtime\Resource) {
+        if($request->context->resource instanceof Resolver\Resource) {
             $request->context->resource->instanciate();
         }
 

@@ -2,13 +2,13 @@
 
 namespace Colorium\Kernel\Component;
 
-use Colorium\Runtime\Resource;
+use Colorium\Runtime\Resolver\Resource;
 use Colorium\Kernel\Component;
 use Colorium\Http\Request;
 use Colorium\Http\Response;
 use Colorium\Http\Error;
-use Colorium\View\Engine;
-use Colorium\View\Html;
+use Colorium\Templating\Engine;
+use Colorium\Templating\Html;
 
 class Templating extends Component
 {
@@ -48,7 +48,7 @@ class Templating extends Component
      * @throws Error\NotFound
      * @throws Error\NotImplemented
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         $response = $process($request, $response);
 

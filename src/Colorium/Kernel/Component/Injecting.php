@@ -5,7 +5,7 @@ namespace Colorium\Kernel\Component;
 use Colorium\Http\Request;
 use Colorium\Http\Response;
 use Colorium\Runtime\Injector;
-use Colorium\Runtime\Resource;
+use Colorium\Runtime\Resolver\Resource;
 use Colorium\Kernel\Component;
 
 class Injecting extends Component
@@ -18,7 +18,7 @@ class Injecting extends Component
     /**
      * Define injector
      */
-    public function __constructor()
+    public function __construct()
     {
         $this->injector = new Injector;
     }
@@ -41,7 +41,7 @@ class Injecting extends Component
      * @param callable $process
      * @return Response
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         // if valid resolved resource
         if($request->context->resource instanceof Resource) {

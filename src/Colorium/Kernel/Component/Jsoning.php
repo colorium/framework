@@ -22,7 +22,7 @@ class Jsoning extends Component
      * @throws Error\NotFound
      * @throws Error\NotImplemented
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         $response = $process($request, $response);
 

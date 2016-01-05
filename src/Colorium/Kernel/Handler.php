@@ -9,7 +9,7 @@ class Handler extends \stdClass
 {
 
     /** @var callable[] */
-    protected $component = [];
+    protected $components = [];
 
 
     /**
@@ -19,30 +19,16 @@ class Handler extends \stdClass
      */
     public function __construct(Component ...$components)
     {
-        $this->plug(new Component\Required\Executing);
+        $components[] = new Component\Required\Executing;
         $components = array_reverse($components);
         foreach($components as $component) {
-            $this->plug($component);
+            $next = reset($this->components) ?: null;
+            $component->bind($this)->setup();
+            $callable = function(Http\Request $request, Http\Response $response) use($component, $next) {
+                return $component->handle($request, $response, $next);
+            };
+            array_unshift($this->components, $callable);
         }
-    }
-
-
-    /**
-     * Add component
-     *
-     * @param Component $component
-     * @return $this
-     */
-    protected function plug(Component $component)
-    {
-        $next = end($this->components);
-        $component->bind($this)->setup();
-        $callable = function(Http\Request $request, Http\Response $response) use($component, $next) {
-            return $component->handle($request, $response, $next);
-        };
-
-        $this->components[] = $callable;
-        return $this;
     }
 
 
@@ -60,7 +46,7 @@ class Handler extends \stdClass
         $response = $response ?: new Http\Response;
 
         // call components
-        $process = end($this->Components);
+        $process = reset($this->components);
         $response = call_user_func($process, $request, $response);
 
         // send response

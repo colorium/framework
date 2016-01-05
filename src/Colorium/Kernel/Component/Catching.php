@@ -53,7 +53,7 @@ class Catching extends Component
      * @throws Error
      * @throws \Exception
      */
-    public function handle(Request $request, Response $response, callable $process)
+    public function handle(Request $request, Response $response, callable $process = null)
     {
         // event listener wrapper
         $forward = function($resource) use($request) {

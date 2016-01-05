@@ -36,6 +36,6 @@ abstract class Component
      * @param callable $process
      * @return Response
      */
-    abstract public function handle(Request $request, Response $response, callable $process);
+    abstract public function handle(Request $request, Response $response, callable $process = null);
 
 }

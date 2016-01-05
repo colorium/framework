@@ -121,7 +121,7 @@ class Router implements Routable
         foreach($this->routes as $route) {
             $compiled = static::compile($route->uri);
             if(preg_match($compiled, $uri, $params) and ($route->method == 'ANY' or $method == $route->method)) {
-                $route->params = array_filter('is_string', $params, ARRAY_FILTER_USE_KEY);
+                $route->params = array_filter($params, 'is_string', ARRAY_FILTER_USE_KEY);
                 return $route;
             }
         }

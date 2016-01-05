@@ -16,7 +16,7 @@ class Store implements Subject
      * @param callable $listener
      * @return $this
      */
-    public function on($event, callable $listener)
+    public function on($event, $listener)
     {
         $this->events[$event] = $listener;
         return $this;

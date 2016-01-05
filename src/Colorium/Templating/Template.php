@@ -1,6 +1,6 @@
 <?php
 
-namespace Colorium\View;
+namespace Colorium\Templating;
 
 class Template extends Sandbox
 {
