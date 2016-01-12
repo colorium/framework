@@ -40,7 +40,7 @@ abstract class Sandbox
     public function __construct($template, array $sections = [], array $helpers = [], $root = null)
     {
         if(!file_exists($template)) {
-            throw new \Exception('File "' . $template . '" not found.');
+            throw new \Exception('Unknown template "' . $template . '".');
         }
 
         $this->template = $template;

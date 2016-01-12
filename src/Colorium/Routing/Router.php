@@ -9,8 +9,8 @@ use Colorium\Runtime\Annotation;
  *
  * Vocabulary :
  * - method : http verb (ANY, GET, POST, PUT, DELETE, OPTIONS, HEAD)
- * - uri : relative url (/home)
- * - query : method + uri (GET /home)
+ * - uri : relative url (/errors)
+ * - query : method + uri (GET /errors)
  */
 class Router implements Routable
 {
@@ -84,7 +84,7 @@ class Router implements Routable
     {
         $prefix = '/' . trim($prefix, '/');
         foreach($router->routes() as $route) {
-            $route->uri = $prefix . $route->query;
+            $route->uri = $prefix . $route->uri;
             $route->meta = array_merge($route->meta, $meta);
             $query = static::clean($route->method . ' ' . $route->uri);
             $this->routes[$query] = $route;
@@ -119,8 +119,8 @@ class Router implements Routable
 
         // search in all routes
         foreach($this->routes as $route) {
-            $compiled = static::compile($route->uri);
-            if(preg_match($compiled, $uri, $params) and ($route->method == 'ANY' or $method == $route->method)) {
+            $route->compiled = static::compile($route->uri);
+            if(preg_match($route->compiled, $uri, $params) and ($route->method == 'ANY' or $method == $route->method)) {
                 $route->params = array_filter($params, 'is_string', ARRAY_FILTER_USE_KEY);
                 return $route;
             }
@@ -181,8 +181,8 @@ class Router implements Routable
      */
     protected static function compile($uri)
     {
-        $regex = str_replace('/', '\/', $uri);
-        $regex = preg_replace('#\:([a-zA-Z0-9_]+)#', '(?P<$1>\w+)', $regex);
+        $regex = str_replace('#', '#', $uri);
+        $regex = preg_replace('#\:([a-zA-Z0-9_]+)#', '(?P<$1>[^/]+)', $regex);
         return '#^' . $regex . '$#';
     }
 
