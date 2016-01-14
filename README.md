@@ -1,1 +1,1 @@
-# Colorium Web Framework
+# Colorium Global Framework

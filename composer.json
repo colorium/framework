@@ -1,7 +1,7 @@
 {
   "name": "colorium/framework",
-  "type": "library",
-  "description": "Non-frustrating Web Framework",
+  "type": "metapackage",
+  "description": "Colorium Global Package",
   "homepage": "https://github.com/colorium/framework",
   "license": "MIT",
   "authors": [
@@ -13,17 +13,13 @@
   ],
   "require": {
     "php": ">=5.6",
-    "psr/log": ">=1.0",
+    "colorium/app": "dev-master",
+    "colorium/arraydot": "dev-master",
     "colorium/http": "dev-master",
+    "colorium/orm": "dev-master",
+    "colorium/routing": "dev-master",
     "colorium/runtime": "dev-master",
-    "colorium/persistence": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "Colorium\\Event\\": "/src/Colorium/Event/",
-      "Colorium\\Kernel\\": "/src/Colorium/Kernel/",
-      "Colorium\\Routing\\": "/src/Colorium/Routing/",
-      "Colorium\\Templating\\": "/src/Colorium/Templating/"
-    }
+    "colorium/stateful": "dev-master",
+    "colorium/templating": "dev-master"
   }
 }
