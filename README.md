@@ -1,1 +1,3 @@
-# Colorium Global Framework
+# Colorium components aggregator
+
+`composer require colorium/framework`

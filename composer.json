@@ -1,7 +1,7 @@
 {
   "name": "colorium/framework",
   "type": "metapackage",
-  "description": "Colorium Global Package",
+  "description": "Colorium components aggregator",
   "homepage": "https://github.com/colorium/framework",
   "license": "MIT",
   "authors": [
