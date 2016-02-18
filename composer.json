@@ -13,14 +13,14 @@
   ],
   "require": {
     "php": ">=5.6",
-    "colorium/app": "dev-master",
-    "colorium/text": "dev-master",
     "colorium/arraydot": "dev-master",
     "colorium/http": "dev-master",
     "colorium/orm": "dev-master",
     "colorium/routing": "dev-master",
     "colorium/runtime": "dev-master",
     "colorium/stateful": "dev-master",
-    "colorium/templating": "dev-master"
+    "colorium/templating": "dev-master",
+    "colorium/text": "dev-master",
+    "colorium/web": "dev-master"
   }
 }
